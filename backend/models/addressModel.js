@@ -1,9 +1,9 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 const addressSchema=new Schema({
-    patientId:{
-        type:Schema.Types.patientId,
-        ref:'Patient',
+    userId:{
+        type:Schema.Types.ObjectId,
+        ref:'User',
         required:true
 
     },
