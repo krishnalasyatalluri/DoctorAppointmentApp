@@ -6,13 +6,13 @@ const bookingSchema=new Schema({
         required:true
     },
     patientId:{
-        type:Schema.Types.patientId,
+        type:Schema.Types.ObjectId,
         ref:'Patient',
         required:true
 
     },
     doctorId:{
-        type:Schema.Types.doctorId,
+        type:Schema.Types.ObjectId,
         ref:'Doctor',
         required:true
 
