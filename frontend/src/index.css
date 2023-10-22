@@ -1,0 +1,740 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+    --primary-color: #28bf96;
+    --primary-color-dark: #209677;
+    --text-dark: #111827;
+    --text-light: #6b7280;
+    --white: #ffffff;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    outline: rgb(2, 244, 220);
+    border: none;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btns {
+    border: 2px solid black;
+    background-color: rgb(29, 231, 187);
+    color: black;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .success {
+    border-color: #04AA6D;
+    color: green;
+  }
+  
+  .success:hover {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  
+
+.btn:hover {
+    background-color: var(--primary-color-dark);
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.nav__logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.nav__links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.link a {
+    text-decoration: none;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.link a:hover {
+    color: var(--primary-color);
+}
+
+.header {
+    padding: 0 1rem;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: center;
+}
+
+.content h1 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.content h1 span {
+    font-weight: 200;
+}
+
+.content p {
+    margin-bottom: 2rem;
+    color: var(--text-light);
+    line-height: 1.75rem;
+}
+
+.image {
+    position: relative;
+    text-align: center;
+    isolation: isolate;
+}
+
+.image__bg {
+    position: absolute;
+    top: 350%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    width: 450px;
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    z-index: -1;
+}
+
+.image img {
+    width: 100%;
+    max-width: 475px;
+}
+
+.image__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+    background-color: var(--white);
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.image__content__1 {
+    transform: translate(calc(-50% - 12rem), calc(-50% - 8rem));
+}
+
+.image__content__1 span {
+    padding: 10px 12px;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    background-color: #defcf4;
+    border-radius: 100%;
+}
+
+.image__content__1 h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.image__content__1 p {
+    color: var(--text-light);
+}
+
+.image__content__2 {
+    transform: translate(calc(-50% + 8rem), calc(-50% + 10rem));
+}
+
+.image__content__2 ul {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+}
+
+.image__content__2 li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: var(--text-light);
+}
+
+.image__content__2 span {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+@media (width < 900px) {
+    .nav__links {
+        display: none;
+    }
+
+    .header {
+        padding: 1rem;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .image {
+        grid-area: 1/1/2/2;
+    }
+}
+
+/* aboutus */
+/* styles.css */
+
+/* Body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    /* Set a background color */
+}
+
+/* Container styles */
+.about-us-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* About Us content styles */
+.about-us-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Read more button styles */
+.read-more-button {
+    margin-top: 20px;
+    display: block;
+    /* Make the button a block element to appear after the content */
+    margin-left: auto;
+    /* Center the button horizontally */
+    margin-right: auto;
+    /* Center the button horizontally */
+}
+
+/* Responsive styles using Bootstrap classes */
+@media (max-width: 768px) {
+    .about-us-content {
+        width: 100%;
+    }
+}
+
+/* contact us */
+/* styles.css */
+
+/* Contact Heading styles */
+.contactHeading {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 36px;
+    color: #007bff;
+    /* Blue color for heading */
+}
+
+/* Contact Container styles */
+.contactContainer {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact Info styles */
+.contactInfo {
+    text-align: left;
+    font-size: 18px;
+}
+
+/* Contact Label styles */
+.contactLabel {
+    font-weight: bold;
+}
+
+/* Contact Form Container styles */
+.contactFormContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* Contact Form styles */
+.contactForm {
+    max-width: 400px;
+    width: 100%;
+}
+
+.contactForm input,
+.contactForm textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.contactForm button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contactForm button:hover {
+    background-color: #0056b3;
+    /* Darker blue color on hover */
+}
+/* login page */
+/* styles.css */
+
+/* Login Container styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Login Form styles */
+.login-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Login Heading styles */
+.login-heading {
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Login Input styles */
+.login-input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+/* Error Message styles */
+.error-message {
+    color: red;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+/* Checkbox Container styles */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Checkbox styles */
+.checkbox {
+    margin-right: 10px;
+}
+
+/* Checkbox Label styles */
+.checkbox-label {
+    font-size: 14px;
+}
+
+/* Login Button styles */
+.login-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Register Link styles */
+.register-link {
+    font-size: 14px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+/* Register Button styles */
+.register-button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    font-size: 14px;
+    cursor: pointer;
+}
+/* register page */
+/* styles.css */
+
+/* Register Container styles */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Register Form styles */
+.register-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Register Form Heading styles */
+.register-form p {
+    color: blue;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+/* Register Input styles */
+.register-form input[type="text"],
+.register-form input[type="password"],
+.register-form select {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+/* Error Message styles */
+.register-form span {
+    color: red;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+/* Checkbox styles */
+.register-form input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Register Button styles */
+.register-form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-form input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Login Link styles */
+.register-form p span {
+    cursor: pointer;
+    color: blue;
+}
+
+/* Login Button styles inside the Register form */
+.register-form button {
+    background-color: transparent;
+    border: none;
+    color: blue;
+    font-size: 22px;
+    cursor: pointer;
+}
+/* categorylist */
+/* Style for the card container */
+.card {
+    width: 18rem;
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 10px; /* Border radius for rounded corners */
+    margin: 20px; /* Margin around the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift effect */
+}
+
+/* Style for the card header */
+.card-header {
+    background-color: #007bff; /* Header background color */
+    color: #fff; /* Header text color */
+    padding: 10px; /* Padding inside the header */
+    text-align: center; /* Center align the text */
+    border-top-left-radius: 10px; /* Border radius for rounded corners on the top left */
+    border-top-right-radius: 10px; /* Border radius for rounded corners on the top right */
+}
+
+/* Style for the list items */
+.list-group-item {
+    background-color: #f8f9fa; /* List item background color */
+    border: none; /* Remove border for list items */
+    color: #333; /* List item text color */
+}
+
+/* Style for the featured list item */
+.list-group-item:first-child {
+    background-color: #007bff; /* Featured item background color */
+    color: #fff; /* Featured item text color */
+}
+/* logout */
+/* index.css */
+/* Add any global styles here */
+
+/* Styles for LogoutPage component */
+
+.logout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.logout-heading {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.logout-content {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logout-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logout-textarea {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.logout-message {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.logout-btn {
+    margin: 0 10px;
+}
+/* footer page */
+.footer-container {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-section {
+    flex: 1;
+    margin: 0 20px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  
+  ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .social-icons li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  .social-icons li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer-bottom {
+    background-color: #222;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  /* category */
+  /* styles.css */
+/* Add your custom styles here */
+/* index.css */
+/* Add your custom styles here */
+
+/* .d-flex {
+    display: flex;
+}
+
+.align-items-start {
+    align-items: flex-start;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-link {
+    color: #007bff;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid rgba(0, 123, 255, 0.125);
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.tab-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-pane {
+    display: none;
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    background-color: #f9f9f9;
+}
+
+.tab-pane.fade.show.active {
+    display: block;
+} */
+/* Add these styles to your CSS file or style tag in your component */
+
+/* Style for the active tab */
+.nav-pills .nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Hover effect for tabs */
+.nav-pills .nav-link:hover {
+    background-color: #f8f9fa;
+}
+
+/* Style for tab content */
+.tab-pane {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Style for active tab content */
+.tab-pane.active {
+    background-color: #fff;
+}
+
+/* Optional: Add some spacing and margin to the container */
+.container {
+    margin-top: 20px;
+}
+
+/* Optional: Style for the vertical layout */
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col-3, .col-9 {
+    flex: 1;
+    padding: 0 10px;
+}

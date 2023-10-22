@@ -2,13 +2,17 @@ const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 const patientSchema=new Schema({
     patientId:{
-        type:String,
+        type:Schema.Types.ObjectId,
     },
-    firstName:{
+    password:{
+        type:String,
+        required:true
+    },
+    fullName:{
         type:String,
         required:[true,'first name is required']
     },
-    lastName:{
+    email:{
         type:String,
         required:[true,'last name is required']
     },
@@ -22,7 +26,7 @@ const patientSchema=new Schema({
     
 
 
-})
+},{timestamps:true})
 const Patient=mongoose.model('Patient',patientSchema)
 module.exports = Patient
 
