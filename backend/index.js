@@ -8,6 +8,8 @@ const authorizeUser=require('./middlewares/authorizeUser')
 const categoryCltr = require('./controllers/category-cltr')
 const doctorCltr = require('./controllers/doctor-cltr')
 const addressCltr = require('./controllers/address-cltr')
+const bookingCltr = require('./controllers/booking-cltr')
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app=express()
 app.use(express.json())
 app.use(cors())
@@ -51,7 +53,8 @@ app.put('/api/update/address',authenticateUser,(req,res,next)=>{
     req.permittedRoles=['patient']
     next()
 },authorizeUser,addressCltr.updateAddress)
-
+//bookings
+app.post('/',bookingCltr.create)
 // doctors -controller
 // app.get('/api/doctors',authenticateUser,(req,res,next)=>{
 //     req.permittedRoles=['doctor','admin']
