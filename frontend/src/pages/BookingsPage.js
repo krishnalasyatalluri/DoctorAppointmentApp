@@ -8,10 +8,10 @@
 //     )
 // }
 // export default BookingsPage
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const BookingsPage = ({ location }) => {
-    const { category, issue, activeCategory } = location.state;
+    const { category, issue, activeCategory } = location.state || {};
     const [formData, setFormData] = useState({
         date: '',
         time: '',
@@ -35,7 +35,7 @@ const BookingsPage = ({ location }) => {
     return (
         <div className="container mt-4">
             <h2>Book an Appointment</h2>
-            <h3>Category: {category.title}</h3>
+            <h3>Category: {activeCategory.title}</h3>
             <h4>Issue: {issue.title}</h4>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
