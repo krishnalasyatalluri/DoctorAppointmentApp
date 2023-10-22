@@ -8,7 +8,7 @@ import DoctorsPage from "./pages/DoctorsPage.js"
 import LogoutPage from "./pages/LogoutPage"
 import ProfilePage from "./pages/ProfilePage"
 import ContactUsPage from "./pages/ContactUsPage"
-import EnquiriesPage from "./pages/EnquiriesPage"
+
 import BookingsPage from "./pages/BookingsPage"
 import AboutUsPage from "./pages/aboutUsPage"
 import CategoryList from "./components/categoryList"
@@ -25,7 +25,6 @@ const App = (props) => {
         <Route path="/aboutus" component={AboutUsPage} exact={true} />
         <Route path="/profile" component={ProfilePage} exact={true} />
         <Route path="/contactus" component={ContactUsPage} exact={true} />
-        <Route path="/enquiries" component={EnquiriesPage} exact={true} />
         <Route path="/bookings" component={BookingsPage} exact={true} />
 
 
