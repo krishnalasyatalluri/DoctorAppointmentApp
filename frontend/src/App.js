@@ -10,7 +10,7 @@ import ProfilePage from "./pages/ProfilePage"
 import ContactUsPage from "./pages/ContactUsPage"
 import EnquiriesPage from "./pages/EnquiriesPage"
 import BookingsPage from "./pages/BookingsPage"
-import AboutUsPage from "./pages/AboutUsPage"
+import AboutUsPage from "./pages/aboutUsPage"
 import CategoryList from "./components/categoryList"
 import { Router } from "react-router-dom/cjs/react-router-dom.min"
 const App = (props) => {

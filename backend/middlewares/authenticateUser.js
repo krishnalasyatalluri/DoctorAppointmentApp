@@ -6,7 +6,7 @@ const authenticateUser =  async(req, res, next)=>{
     
     const token = req.headers['o-auth']
     try{
-        const userDoc=jwt.verify(token,process.env.JWT_SECRET)
+        const userDoc=jwt.verify(token,dcotor123)
         if(userDoc){
             req.user.id=userDoc.id 
             next()

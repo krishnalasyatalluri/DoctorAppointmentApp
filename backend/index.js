@@ -11,7 +11,7 @@ const addressCltr = require('./controllers/address-cltr')
 const app=express()
 app.use(express.json())
 app.use(cors())
-const PORT=process.env.PORT
+const PORT=3050
 configureDB()
 //public routes
 app.post('/api/users/register',userCltr.register)//admin,doctor,patient
