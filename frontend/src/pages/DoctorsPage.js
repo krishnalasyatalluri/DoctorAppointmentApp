@@ -66,11 +66,10 @@ import { useLocation,useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { asyncGetAllDoctors } from "../redux/actions/doctorsActions";
 
-const DoctorsPage = (props) => {
+const DoctorsPage = () => {
     const location = useLocation();
     const history=useHistory()
     const { activeCategory, issue } = location.state;
-    console.log('issue',issue)
     console.log(location.state)
     const dispatch = useDispatch();
     const doctors = useSelector((state) => state.doctors);
@@ -86,18 +85,13 @@ const DoctorsPage = (props) => {
         // Filter doctors based on activeCategory and issue
         const filteredDocs = doctors.filter((doctor) => {
             return doctor.specialization === activeCategory.title;
-            console.log(activeCategory)
         });
         setFilteredDoctors(filteredDocs);
     }, [doctors, activeCategory, issue]);
-    const handleAppointment=(id)=>{
+    const handleAppointment=(i)=>{
         history.push({
-            pathname:'/bookings',
+            pathname:'/booking',
             state:{
-                doctorId:id,
-                selectedCategory:activeCategory.title,
-                selectedIssue:issue.title ,
-                selectedIssuePrice:issue.price
 
             }
         })
@@ -115,7 +109,7 @@ const DoctorsPage = (props) => {
                                 <p className="card-text">Specialization: {doctor.specialization}</p>
                                 <p className="card-text">Experience: {doctor.experience}</p>
                                 <a href="#" className="btn btn-primary" onClick={()=>{
-                                    handleAppointment(doctor._id)}}>
+                                    handleAppointment(i)}}>
                                     Make an Appointment
                                 </a>
                             </div>
