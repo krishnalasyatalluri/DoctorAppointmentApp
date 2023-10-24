@@ -61,144 +61,76 @@
 //         </div>
 //     ))}
 // </div>
-// import React, { useEffect, useState } from "react";
-// import { useLocation, useHistory } from "react-router-dom";
-// import { useSelector, useDispatch } from "react-redux";
-// import { asyncGetAllDoctors } from "../redux/actions/doctorsActions";
-// import BookingForm from "../forms/BookingForm";
-
-
-// const DoctorsPage = () => {
-    
-//     const location = useLocation();
-//     const history = useHistory()
-//     const { state } = location;
-//     // const { activeCategory, issue } = location.state;
-//     const activeCategory = state && state.activeCategory ? state.activeCategory : null;
-//     const issue = state && state.issue ? state.issue : null;
-//     console.log(location.state)
-//     const dispatch = useDispatch();
-//     const doctors = useSelector((state) => state.doctors);
-//     const categories=useSelector((state)=>state.categories)
-//     const [filteredDoctors, setFilteredDoctors] = useState([]);
-
-//     useEffect(() => {
-//         (async () => {
-//             dispatch(asyncGetAllDoctors());
-//         })();
-//     }, [dispatch]);
-
-//     useEffect(() => {
-//         // Filter doctors based on activeCategory and issue
-//         const filteredDocs = doctors.filter((doctor) => {
-//             return doctor.specialization === activeCategory.title;
-//         });
-//         setFilteredDoctors(filteredDocs);
-//     }, [doctors, activeCategory, issue]);
-//     const handleAppointment = (doctor) => {
-//         history.push({
-//             pathname: '/bookings',
-//             state: {
-//                 activeCategory: categories[activeCategory],
-//                 issue: issue,
-//                 doctor: doctor
-
-//             }
-//         })
-
-//     }
-
-//     return (
-//         <div className="container mt-4">
-//             <div className="row">
-//                 {filteredDoctors.map((doctor, i) => (
-//                     <div className="col-sm-6" key={doctor.id}>
-//                         <div className="card">
-//                             <div className="card-body" key={doctor.id}>
-//                                 <h5 className="card-title">{doctor.fullName}</h5>
-//                                 <p className="card-text">Specialization: {doctor.specialization}</p>
-//                                 <p className="card-text">Experience: {doctor.experience}</p>
-//                                 <a href="#" className="btn btn-primary" onClick={() => {
-//                                     handleAppointment(doctor)
-//                                 }}>
-//                                     Make an Appointment
-//                                 </a>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 ))}
-//             </div>
-//         </div>
-
-//     )
-
-
-
-// }
-
-
-
-// export default DoctorsPage
 import React, { useEffect, useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation,useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { asyncGetAllDoctors } from "../redux/actions/doctorsActions";
-import BookingForm from "../forms/BookingForm";
 
-const DoctorsPage = () => {
+const DoctorsPage = (props) => {
     const location = useLocation();
-    const history = useHistory();
-    const { state } = location;
-    const activeCategory = state && state.activeCategory ? state.activeCategory : null;
-    const issue = state && state.issue ? state.issue : null;
-    
+    const history=useHistory()
+    const { activeCategory, issue } = location.state;
+    console.log('issue',issue)
+    console.log(location.state)
     const dispatch = useDispatch();
     const doctors = useSelector((state) => state.doctors);
-    const categories = useSelector((state) => state.categories); // Assuming you have a 'categories' state in your redux store
     const [filteredDoctors, setFilteredDoctors] = useState([]);
 
     useEffect(() => {
-        dispatch(asyncGetAllDoctors());
+        (async () => {
+            dispatch(asyncGetAllDoctors());
+        })();
     }, [dispatch]);
 
     useEffect(() => {
-        if (activeCategory && activeCategory.title && issue) {
-            const filteredDocs = doctors.filter((doctor) => doctor.specialization === activeCategory.title);
-            setFilteredDoctors(filteredDocs);
-        }
-    }, [doctors, activeCategory, issue]);
-
-    const handleAppointment = (doctor) => {
-        history.push({
-            pathname: '/bookings',
-            state: {
-                activeCategory: categories[activeCategory], // Assuming you want to pass the entire category object
-                issue: issue,
-                doctor: doctor
-            }
+        // Filter doctors based on activeCategory and issue
+        const filteredDocs = doctors.filter((doctor) => {
+            return doctor.specialization === activeCategory.title;
+            console.log(activeCategory)
         });
-    };
+        setFilteredDoctors(filteredDocs);
+    }, [doctors, activeCategory, issue]);
+    const handleAppointment=(id)=>{
+        history.push({
+            pathname:'/bookings',
+            state:{
+                doctorId:id,
+                selectedCategory:activeCategory.title,
+                selectedIssue:issue.title ,
+                selectedIssuePrice:issue.price
+
+            }
+        })
+
+    }
 
     return (
         <div className="container mt-4">
             <div className="row">
-                {filteredDoctors.map((doctor, i) => (
+                {filteredDoctors.map((doctor,i) => (
                     <div className="col-sm-6" key={doctor.id}>
                         <div className="card">
-                            <div className="card-body">
+                            <div className="card-body" key={doctor.id}>
                                 <h5 className="card-title">{doctor.fullName}</h5>
                                 <p className="card-text">Specialization: {doctor.specialization}</p>
                                 <p className="card-text">Experience: {doctor.experience}</p>
-                                <button className="btn btn-primary" onClick={() => handleAppointment(doctor)}>
+                                <a href="#" className="btn btn-primary" onClick={()=>{
+                                    handleAppointment(doctor._id)}}>
                                     Make an Appointment
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
         </div>
-    );
-};
 
-export default DoctorsPage;
+    )
+
+
+
+}
+
+
+
+export default DoctorsPage
