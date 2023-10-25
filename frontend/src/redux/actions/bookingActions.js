@@ -1,14 +1,25 @@
+// import axios from 'axios';
+
+// export const createBooking = (bookingData) => {
+//     return async (dispatch) => {
+//         try {
+//             // Send bookingData to the backend API endpoint
+//             const response = await axios.post('/api/bookings', bookingData);
+//             dispatch({ type: 'BOOKING_SUCCESS', payload: response.data.booking });
+//         } catch (error) {
+//             dispatch({ type: 'BOOKING_ERROR', payload: error.response.data.message });
+//         }
+//     };
+// };
 import axios from 'axios';
 
-export const createBooking = (bookingData) => async (dispatch) => {
+export const createPaymentIntent = (amount) => async (dispatch) => {
   try {
-    // Make API call to backend to create a new booking
-    const response = await axios.post('/api/bookings', bookingData);
-
-    // Dispatch action to update Redux store or handle as needed
-    // For example:
-    // dispatch({ type: 'BOOKING_CREATED', payload: response.data });
+    const response = await axios.post('http://localhost:3050/api/create-payment-intent', {
+      amount,
+    });
+    return response.data.clientSecret;
   } catch (error) {
-    // Handle error
+    console.error(error);
   }
 };

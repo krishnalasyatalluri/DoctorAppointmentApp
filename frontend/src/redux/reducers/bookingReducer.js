@@ -1,14 +1,14 @@
 // const initialState = {
-//     loading: false,
+//     booking: null,
 //     error: null,
 // };
 
 // const bookingReducer = (state = initialState, action) => {
 //     switch (action.type) {
 //         case 'BOOKING_SUCCESS':
-//             return { ...state, loading: false, error: null };
-//         case 'BOOKING_FAILURE':
-//             return { ...state, loading: false, error: action.error };
+//             return { ...state, booking: action.payload, error: null };
+//         case 'BOOKING_ERROR':
+//             return { ...state, booking: null, error: action.payload };
 //         default:
 //             return state;
 //     }
@@ -16,18 +16,17 @@
 
 // export default bookingReducer;
 const initialState = {
-    // Define initial state if needed
+    clientSecret: null,
   };
   
-  const bookingsReducer = (state = initialState, action) => {
+  const bookingReducer = (state = initialState, action) => {
     switch (action.type) {
-      // Handle different booking related actions if needed
-      // case 'BOOKING_CREATED':
-      //   return { ...state, booking: action.payload };
+      case 'SET_CLIENT_SECRET':
+        return { ...state, clientSecret: action.payload };
       default:
         return state;
     }
   };
   
-export default bookingsReducer;
+export default bookingReducer;
   

@@ -84,27 +84,7 @@ app.post('/api/doctors', doctorCltr.addDoctor)
 //slots
 app.get('/slots/:doctorId', slotCltr.findSlots)
 //payment
-app.post('/process-payment', async (req, res) => {
-    const { token, issue } = req.body;
 
-    try {
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: issue.price * 100, // Stripe deals with amounts in cents
-            currency: 'inr', // Set currency to Indian Rupees (INR)
-            payment_method: token.id,
-            confirmation_method: 'manual',
-            confirm: true,
-        });
-
-        // Handle successful payment, create booking, and send confirmation response
-        // Implement your logic here
-
-        res.json({ success: true, message: 'Payment successful and booking confirmed.' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Payment failed.' });
-    }
-});
 app.get('/', (req, res) => {
     res.send('welcome to Doctor Appointment Website')
 })
