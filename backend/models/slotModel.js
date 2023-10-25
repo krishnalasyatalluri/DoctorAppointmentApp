@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 const slotSchema=new Schema({
     doctorId:{
-        type:Schema.Types.doctorId,
+        type:Schema.Types.ObjectId,
         required:true,
         ref:'Doctor'
        

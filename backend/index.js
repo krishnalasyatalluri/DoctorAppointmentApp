@@ -1,80 +1,113 @@
-const configureDB=require('./config/db')
-const express=require('express')
-const cors=require('cors')
+const configureDB = require('./config/db')
+const express = require('express')
+const cors = require('cors')
 require('dotenv').config()
-const userCltr=require('./controllers/user-cltr')
-const authenticateUser=require('./middlewares/authenticateUser')
-const authorizeUser=require('./middlewares/authorizeUser')
+const userCltr = require('./controllers/user-cltr')
+const authenticateUser = require('./middlewares/authenticateUser')
+const authorizeUser = require('./middlewares/authorizeUser')
 const categoryCltr = require('./controllers/category-cltr')
 const doctorCltr = require('./controllers/doctor-cltr')
 const addressCltr = require('./controllers/address-cltr')
-const bookingCltr = require('./controllers/booking-cltr')
+const paymentCltr = require('./controllers/payment-cltr')
+const slotCltr = require('./controllers/slot-cltr')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const app=express()
+const bodyParser = require("body-parser");
+const app = express()
 app.use(express.json())
-app.use(cors())
-const PORT=3050
+app.use(bodyParser.json());
+const corsOptions = {
+    origin: ['http://localhost:3000', 'https://js.stripe.com'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+};
+app.use(cors(corsOptions))
+const PORT = 3050
 configureDB()
 //public routes
-app.post('/api/users/register',userCltr.register)//admin,doctor,patient
-app.post('/api/users/login',userCltr.login)//admin,doctor,patient
+app.post('/api/users/register', userCltr.register)//admin,doctor,patient
+app.post('/api/users/login', userCltr.login)//admin,doctor,patient
 //user specific -private routes
-app.get('/api/users/profile',authenticateUser,userCltr.account)//admin,doctor,patient
-app.put('/api/users/profile',authenticateUser,userCltr.updateAccount)//admin,doctor,patient
+app.get('/api/users/profile', authenticateUser, userCltr.account)//admin,doctor,patient
+app.put('/api/users/profile', authenticateUser, userCltr.updateAccount)//admin,doctor,patient
 //authorization - only admin
-app.get('/api/all/users',authenticateUser,(req,res,next)=>{
-    req.permittedRoles=['admin']
+app.get('/api/all/users', authenticateUser, (req, res, next) => {
+    req.permittedRoles = ['admin']
     next()
-},authorizeUser,userCltr.getAllUsers)
-app.delete('/api/all/users',authenticateUser,(req,res,next)=>{
-    req.permittedRoles=['admin']
+}, authorizeUser, userCltr.getAllUsers)
+app.delete('/api/all/users', authenticateUser, (req, res, next) => {
+    req.permittedRoles = ['admin']
     next()
-},authorizeUser,userCltr.removeUser)
+}, authorizeUser, userCltr.removeUser)
 //category - controller
-app.get('/api/categories',categoryCltr.listAll)//admin,doctor,patient
-app.post('/api/categories',authenticateUser,(req,res,next)=>{
-    req.permittedRoles=['admin']
+app.get('/api/categories', categoryCltr.listAll)//admin,doctor,patient
+app.post('/api/categories', authenticateUser, (req, res, next) => {
+    req.permittedRoles = ['admin']
     next()
-},authorizeUser,categoryCltr.createCategory)//admin
-app.put('/api/categories',authenticateUser,(req,res,next)=>{
-    req.permittedRoles=['admin']
+}, authorizeUser, categoryCltr.createCategory)//admin
+app.put('/api/categories', authenticateUser, (req, res, next) => {
+    req.permittedRoles = ['admin']
     next()
-},authorizeUser,categoryCltr.editCategory)
-app.delete('/api/all/users',authenticateUser,(req,res,next)=>{
-    req.permittedRoles=['admin']
+}, authorizeUser, categoryCltr.editCategory)
+app.delete('/api/all/users', authenticateUser, (req, res, next) => {
+    req.permittedRoles = ['admin']
     next()
-},authorizeUser,categoryCltr.removeCategory)
+}, authorizeUser, categoryCltr.removeCategory)
 //adress controller
-app.post('/api/address',authenticateUser,(req,res,next)=>{
-    req.permittedRoles=['patient']
+app.post('/api/address', authenticateUser, (req, res, next) => {
+    req.permittedRoles = ['patient']
     next()
-},authorizeUser,addressCltr.address)
-app.put('/api/update/address',authenticateUser,(req,res,next)=>{
-    req.permittedRoles=['patient']
+}, authorizeUser, addressCltr.address)
+app.put('/api/update/address', authenticateUser, (req, res, next) => {
+    req.permittedRoles = ['patient']
     next()
-},authorizeUser,addressCltr.updateAddress)
+}, authorizeUser, addressCltr.updateAddress)
 //bookings
-app.post('/',bookingCltr.create)
+app.post('/api/payments', paymentCltr.create)
 // doctors -controller
 // app.get('/api/doctors',authenticateUser,(req,res,next)=>{
 //     req.permittedRoles=['doctor','admin']
 //     next()
 // },authorizeUser,doctorCltr.listDoctors)
-app.get('/api/doctors',doctorCltr.listDoctors)
+app.get('/api/doctors', doctorCltr.listDoctors)
 
 // app.post('/api/doctors',(req,res,next)=>{
 //     req.permittedRoles=['doctor']
 //     next()
 // },authorizeUser,doctorCltr.addDoctor)
-app.post('/api/doctors',doctorCltr.addDoctor)
+app.post('/api/doctors', doctorCltr.addDoctor)
 // app.get('/api/doctor/:id',authenticateUser,(req,res,next)=>{
 //     req.permittedRoles=['doctor']
 //     next()
 // },authorizeUser,doctorCltr.getMyDetails)
+// app.post('/api/payments',paymentCltr.confirm)
 
-app.get('/',(req,res)=>{
+//slots
+app.get('/slots/:doctorId', slotCltr.findSlots)
+//payment
+app.post('/process-payment', async (req, res) => {
+    const { token, issue } = req.body;
+
+    try {
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: issue.price * 100, // Stripe deals with amounts in cents
+            currency: 'inr', // Set currency to Indian Rupees (INR)
+            payment_method: token.id,
+            confirmation_method: 'manual',
+            confirm: true,
+        });
+
+        // Handle successful payment, create booking, and send confirmation response
+        // Implement your logic here
+
+        res.json({ success: true, message: 'Payment successful and booking confirmed.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Payment failed.' });
+    }
+});
+app.get('/', (req, res) => {
     res.send('welcome to Doctor Appointment Website')
 })
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
     console.log('server running on port', PORT)
 })
