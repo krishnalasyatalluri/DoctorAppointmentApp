@@ -101,17 +101,17 @@ const ProfilePage = () => {
         <div>
             <NavBar /> {/* Include NavBar component */}
             <div className="container mt-4">
-                <h2>Profile Page</h2>
+                {/* <h2>Profile Page</h2> */}
                 <div>
-                    <strong>Name:</strong> {userData.fullName}
+                    <strong>username:</strong> {userData.fullName}
                 </div>
                 <div>
-                    <strong>Email:</strong> {loginInfo.email}
+                    <strong>Email:</strong> {userData.email}
                 </div>
                 {/* Display role-specific details */}
                 {role === 'doctor' && (
                     <div>
-                        <strong>Specialization:</strong> {userData.specialization}
+                        {/* <strong>Specialization:</strong> {userData.qualification} */}
                         {/* Add more doctor-specific details */}
                     </div>
                 )}
