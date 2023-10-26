@@ -68,7 +68,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SlotsPage from './SlotsPage';
 import CreateSlotForm from '../forms/CreateSlotForm';
-import AvailableSlots from '../forms/availableSlots';
+
 
 const BookingsPage = (props) => {
   const [availableSlots, setAvailableSlots] = useState([]);
