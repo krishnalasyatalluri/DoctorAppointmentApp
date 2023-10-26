@@ -2,17 +2,17 @@ const mongoose=require('mongoose')
 const Schema=mongoose.Schema
 const slotSchema=new Schema({
     doctorId:{
-        type:Schema.Types.doctorId,
+        type:Schema.Types.ObjectId,
         required:true,
         ref:'Doctor'
        
     },
     startDateTime:{
-        type:Date,
+        type:String,
         required:true
     },
     endDateTime:{
-        type:Date,
+        type:String,
         required:true
     },
     isAvailable:{

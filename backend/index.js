@@ -8,6 +8,7 @@ const authorizeUser=require('./middlewares/authorizeUser')
 const categoryCltr = require('./controllers/category-cltr')
 const doctorCltr = require('./controllers/doctor-cltr')
 const addressCltr = require('./controllers/address-cltr')
+const slotCltr = require('./controllers/slot-cltr')
 const app=express()
 app.use(express.json())
 app.use(cors())
@@ -68,7 +69,10 @@ app.post('/api/doctors',doctorCltr.addDoctor)
 //     req.permittedRoles=['doctor']
 //     next()
 // },authorizeUser,doctorCltr.getMyDetails)
-
+// slots
+app.get('/api/slots/:id',slotCltr.availableSlots)
+app.post('/api/slots',slotCltr.bookSlot)
+app.post('/api/create-slot',slotCltr.create)//only doctor and admin
 app.get('/',(req,res)=>{
     res.send('welcome to Doctor Appointment Website')
 })

@@ -4,13 +4,13 @@ import LandingPage from "./pages/LandingPage"
 import { Link, Route } from "react-router-dom"
 import RegisterPage from "./pages/RegisterPage"
 import LoginPage from "./pages/LoginPage"
-import DoctorsPage from "./pages/DoctorsPage.js"
+import DoctorsPage from "./pages/DoctorsPage"
 import LogoutPage from "./pages/LogoutPage"
 import ProfilePage from "./pages/ProfilePage"
 import ContactUsPage from "./pages/ContactUsPage"
-import EnquiriesPage from "./pages/EnquiriesPage"
 import BookingsPage from "./pages/BookingsPage"
 import AboutUsPage from "./pages/aboutUsPage"
+import SlotsPage from "./pages/SlotsPage"
 import CategoryList from "./components/categoryList"
 import { Router } from "react-router-dom/cjs/react-router-dom.min"
 const App = (props) => {
@@ -25,8 +25,8 @@ const App = (props) => {
         <Route path="/aboutus" component={AboutUsPage} exact={true} />
         <Route path="/profile" component={ProfilePage} exact={true} />
         <Route path="/contactus" component={ContactUsPage} exact={true} />
-        <Route path="/enquiries" component={EnquiriesPage} exact={true} />
         <Route path="/bookings" component={BookingsPage} exact={true} />
+        <Route path="/slots" component={SlotsPage} exact={true}/>
 
 
 
