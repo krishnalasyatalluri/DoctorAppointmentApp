@@ -8,11 +8,11 @@ const slotSchema=new Schema({
        
     },
     startDateTime:{
-        type:Date,
+        type:String,
         required:true
     },
     endDateTime:{
-        type:Date,
+        type:String,
         required:true
     },
     isAvailable:{

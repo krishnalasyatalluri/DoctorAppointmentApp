@@ -27,7 +27,7 @@ const NavBar = (props) => {
                         <li className="link"><Link to="/contactus">Contact Us</Link></li>
                         <li className="link"><Link to="/bookings">Bookings</Link></li>
                         <li className="link"><Link to="/profile">Profile</Link></li>
-                        <li className="link"><Link to="/enquiries">Enquiries</Link></li>
+                        <li className="link"><Link to="/slots">Slots</Link></li>
                         <li className="link"><Link to="/logout">Logout</Link></li>
 
                     </ul>

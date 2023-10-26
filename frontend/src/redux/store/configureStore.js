@@ -14,8 +14,8 @@ const configureStore=()=>{
         categories:categoryReducer,
         doctors:doctorsReducer,
         bookings:bookingReducer
-        
     }),applyMiddleware(thunk))
     return store
 }
+
 export default configureStore

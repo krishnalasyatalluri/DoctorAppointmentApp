@@ -361,9 +361,9 @@ const CategoryList = () => {
 
     const handleIssueClick = (issue) => {
         // Redirect to the next page with the selected category and issue
-        if (localStorage.getItem('userID')) {
+        if (localStorage.getItem('userId')) {
             // Retrieve the user ID from localStorage
-            var userID = localStorage.getItem('userID');
+            var userID = localStorage.getItem('userId');
             console.log('User ID:', userID);
         } else {
             console.log('User ID not found');

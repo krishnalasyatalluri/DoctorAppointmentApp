@@ -5,6 +5,8 @@ export const asyncUserLogin=(logInData,props)=>{
         try{
             const result=await axios.post(`http://localhost:3050/api/users/login`,logInData)
             console.log(result)
+            // localStorage.setItem('Name',result.data.fullName)
+            // localStorage.setItem('Id',result.data._id)
             localStorage.setItem('token',result.data.token)
             localStorage.setItem('role',result.data.role)
             dispatch(successLogin(result.data))

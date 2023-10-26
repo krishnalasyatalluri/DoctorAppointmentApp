@@ -44,7 +44,7 @@ userCltr.login = async (req, res) => {
                 }
                 const token = jwt.sign(tokenData, process.env.JWT_SECRET_KEY)
                 
-                res.json({ token: `Bearer ${token}`, message: "Login Successful", role: userDoc.role, id: userDoc._id })
+                res.json({ token: `Bearer ${token}`, message: "Login Successful", role: userDoc.role, id: userDoc._id ,fullName:userDoc.username,email:userDoc.email})
                 
                 
             } else {
