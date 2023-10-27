@@ -361,23 +361,12 @@ const CategoryList = () => {
 
     const handleIssueClick = (issue) => {
         // Redirect to the next page with the selected category and issue
-        if (localStorage.getItem('userId')) {
-            // Retrieve the user ID from localStorage
-            var userID = localStorage.getItem('userId');
-            console.log('User ID:', userID);
-        } else {
-            console.log('User ID not found');
-        }
-
+        
         history.push({
-            pathname: '/doctors',
-            state: {
-                activeCategory: activeCategory,
-                issue: issue.title,
-                userID:userID
-
-            }
-        })
+            pathname:'/doctors',
+            state:{activeCategory:categories[activeCategory],
+                issue:issue}
+            })
         // /${activeCategory.title}/${issue.title}`);
     };
 
@@ -410,7 +399,7 @@ const CategoryList = () => {
                                             color="primary"
                                             outline
                                             onClick={() => {
-                                                handleIssueClick(issue);
+                                                handleIssueClick( issue);
                                             }}
                                         >
                                             {issue.title} - Rs. {issue.price}
