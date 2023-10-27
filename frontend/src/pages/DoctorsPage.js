@@ -218,10 +218,14 @@ const DoctorsPage = () => {
         });
         setFilteredDoctors(filteredDocs);
     }, [doctors, activeCategory, issue]);
-    const handleAppointment=(i)=>{
+    const handleAppointment=(doctor)=>{
         history.push({
-            pathname:'/booking',
+            pathname:'/bookings',
             state:{
+                doctor:doctor,
+                activeCategory:activeCategory,
+                issue:issue
+
 
             }
         })
@@ -239,7 +243,7 @@ const DoctorsPage = () => {
                                 <p className="card-text">Specialization: {doctor.specialization}</p>
                                 <p className="card-text">Experience: {doctor.experience}</p>
                                 <a href="#" className="btn btn-primary" onClick={()=>{
-                                    handleAppointment(i)}}>
+                                    handleAppointment(doctor)}}>
                                     Make an Appointment
                                 </a>
                             </div>

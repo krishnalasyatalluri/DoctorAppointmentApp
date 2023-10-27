@@ -137,7 +137,8 @@ import axios from "axios";
 const DoctorsPage = () => {
     const location = useLocation();
     const history = useHistory();
-    const { activeCategory, issue } = location.state;
+    const { activeCategory, issue,doctor } = location.state;
+    console.log(location.state)
     const dispatch = useDispatch();
     const doctors = useSelector((state) => state.doctors);
     const [filteredDoctors, setFilteredDoctors] = useState([]);
