@@ -70,7 +70,7 @@ app.post('/api/doctors',doctorCltr.addDoctor)
 //     next()
 // },authorizeUser,doctorCltr.getMyDetails)
 // slots
-app.get('/api/slots/:id',slotCltr.availableSlots)
+app.get('/api/slots/${doctor._id}',slotCltr.availableSlots)
 app.post('/api/slots',slotCltr.bookSlot)
 app.post('/api/create-slot',slotCltr.create)//only doctor and admin
 app.get('/',(req,res)=>{

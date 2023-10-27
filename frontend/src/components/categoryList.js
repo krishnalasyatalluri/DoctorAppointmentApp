@@ -372,8 +372,8 @@ const CategoryList = () => {
         history.push({
             pathname: '/doctors',
             state: {
-                activeCategory: categories[activeCategory],
-                issue: issue,
+                activeCategory: activeCategory,
+                issue: issue.title,
                 userID:userID
 
             }

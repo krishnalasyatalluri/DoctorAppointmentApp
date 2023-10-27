@@ -141,14 +141,14 @@ const DoctorsPage = () => {
     const dispatch = useDispatch();
     const doctors = useSelector((state) => state.doctors);
     const [filteredDoctors, setFilteredDoctors] = useState([]);
-    const [selectedDoctor, setSelectedDoctor] = useState(null);
-    const [availableSlots, setAvailableSlots] = useState([]);
-    const fetchAvailableSlots = async (doctorId) => {
-        // Mock data for available slots, replace this with actual API call
-        const response = await axios.post(`/api/slots/${doctorId}`);
-        const data = await response.json();
-        return data.slots; // Assuming the API response contains an array of slots
-    };
+    // const [selectedDoctor, setSelectedDoctor] = useState(null);
+    // const [availableSlots, setAvailableSlots] = useState([]);
+    // const fetchAvailableSlots = async (doctorId) => {
+    //     // Mock data for available slots, replace this with actual API call
+    //     const response = await axios.post(`/api/slots/${doctorId}`);
+    //     const data = await response.json();
+    //     return data.slots; // Assuming the API response contains an array of slots
+    // };
 
     useEffect(() => {
         (async () => {
@@ -164,15 +164,21 @@ const DoctorsPage = () => {
         setFilteredDoctors(filteredDocs);
     }, [doctors, activeCategory, issue]);
 
-    const handleAppointment = async (doctor) => {
-        setSelectedDoctor(doctor);
-        try {
-            // Fetch available slots for the selected doctor
-            const slots = await fetchAvailableSlots(doctor.id);
-            setAvailableSlots(slots);
-        } catch (error) {
-            console.error("Error fetching available slots: ", error);
-        }
+    const handleAppointment = (doctor) => {
+        history.push({
+            pathname:'/bookings',
+            state:{
+                doctor:doctor
+            }
+        })
+        // setSelectedDoctor(doctor);
+        // try {
+        //     // Fetch available slots for the selected doctor
+        //     const slots = await fetchAvailableSlots(doctor.id);
+        //     setAvailableSlots(slots);
+        // } catch (error) {
+        //     console.error("Error fetching available slots: ", error);
+        // }
     };
 
     return (
@@ -194,7 +200,7 @@ const DoctorsPage = () => {
                 ))}
             </div>
 
-            {selectedDoctor && (
+            {/* {selectedDoctor && (
                 <div className="mt-4">
                     <h3>Available Slots for {selectedDoctor.fullName}</h3>
                     <ul>
@@ -203,8 +209,8 @@ const DoctorsPage = () => {
                         ))}
                     </ul>
                 </div>
-            )}
-        </div>
+            )}*/}
+        </div> 
     );
 };
 
